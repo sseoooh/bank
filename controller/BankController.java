@@ -6,9 +6,11 @@ import service.*;
 
 
 public class BankController {
+	
 	public void start() {
 		MemberBean bean = null;
 		MemberService service = new MemberServiceImpl();
+		AccountService account = new AccountServiceImpl();
 		
 		while(true) {
 			switch(JOptionPane.showInputDialog("[메뉴]\n0.종료\n"
@@ -33,31 +35,34 @@ public class BankController {
 			case "2" :
 				JOptionPane.showMessageDialog(null,service.findAll());
 				break;
-				
 			case "3" :
-				
 				break;
-				
 			case "4" :
 				JOptionPane.showMessageDialog(null,service.findById(JOptionPane.showInputDialog("찾을 아이디를 입력하세요")));
 				break;
-				
 			case "5" :
 				JOptionPane.showMessageDialog(null, service.countMember()+"명 입니다");
-				
 				break;
 			case "6" :
-				if(service.existMember(JOptionPane.showInputDialog("로그인하실 아이디 그리고"), JOptionPane.showInputDialog("비밀번호를 입력하세요"))) {
+				if(service.existMember(JOptionPane.showInputDialog("로그인하실 아이디 그리고"),
+					JOptionPane.showInputDialog("비밀번호를 입력하세요"))) {
 					JOptionPane.showMessageDialog(null, "로그인 성공");
-				}else {
+					}else {
 					JOptionPane.showMessageDialog(null, "로그인 실패");
-				}
-				break;
+					}
+					break;
 			case "7" :
-				
-				break;
+				service.updatePass(JOptionPane.showInputDialog("ID를 입력하세요"),
+						JOptionPane.showInputDialog("비밀번호를 입력하세요"),
+						JOptionPane.showInputDialog("변경하실 비밀번호를 입력하세요"));
+						break;
 			case "8" :
+				service.deleteMember(JOptionPane.showInputDialog("삭제하실 아이디를 입력하세요"),
+						JOptionPane.showInputDialog("비밀번호를 입력해주세요"));
+						JOptionPane.showMessageDialog(null, "삭제되었습니다");
 				break;
+			case "9" :
+				
 				
 			}
 		}

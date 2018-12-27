@@ -5,18 +5,18 @@ import service.*;
 import controller.BankController;
 
 /**
- * @author Park Seowoo
+ * @author Seowoo
  * @date 2018. 12. 26.
  * @desc 멤버기능구현
  */
 public class MemberServiceImpl implements MemberService{
-	private int count;
-	private MemberBean[] members;
+	private int count;// 여기서 초기화할수 없으니 밑에서 생성자만들어서 초기화시켜줌
+	private MemberBean[] members; //필드는 램
 	
 	
 	public MemberServiceImpl(){ //클래스끼리는 앞에 없어도 default값이 들어가지만 패키지끼리는 접근제한자 public 써줘야함
-		this.members = new MemberBean[10];
-		
+		this.members = new MemberBean[10]; 
+		this.count = 0;
 	}
 	
 	
@@ -29,24 +29,24 @@ public class MemberServiceImpl implements MemberService{
 		bean.setSsn(ssn);
 		members[count] = bean;//처음에는다 i였다 for문이 있었던자리 해체함
 		count++;
-		//System.out.println("카운트: "+count);
 		}
 
 	@Override
 	public MemberBean[] findAll() {
-		// TODO Auto-generated method stub
 		return members;
 	}
 
 	@Override
 	public MemberBean[] findByName(String name) {
+		MemberBean[] bean = new MemberBean[count];
+		int j = 0;
 		for(int i=0;i<count;i++) {
 			if(members[i].getName().equals(name)) {
-				
+				bean[j] = members[i];
+				j++;
 				break;
 			}
 		}
-		// TODO Auto-generated method stub
 		return members;
 	} 
 
@@ -59,13 +59,11 @@ public class MemberServiceImpl implements MemberService{
 				break;
 			}
 		}
-		// TODO Auto-generated method stub
 		return bean;
 	} 
 
 	@Override
 	public int countMember() {
-		// TODO Auto-generated method stub
 		return count;
 	}
 
@@ -89,7 +87,6 @@ public class MemberServiceImpl implements MemberService{
 				members[i].setPass(newPass);
 			}
 		}
-		
 	}
 
 	@Override
@@ -102,7 +99,5 @@ public class MemberServiceImpl implements MemberService{
 				break;
 			}
 		}
-		
 	}
-	
 }

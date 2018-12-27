@@ -9,6 +9,7 @@ package domain;
 public class AccountBean {
 	private String accountNum,today;
 	private int money; 
+	
 	public void setAccountNum(String accountNum) {
 		this.accountNum = accountNum;
 	}
