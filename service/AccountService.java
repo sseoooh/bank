@@ -14,17 +14,26 @@ import domain.MemberBean;
 public interface AccountService {
 	// CRAETE
 	public void createAccount(int money);
-	public String createAccountNum();	//계좌번호 생성 - 랜덤으로만들기때문에 파라미터 필요없음
+
+	public String createAccountNum(); // 계좌번호 생성 - 랜덤으로만들기때문에 파라미터 필요없음
 	// READ
+
 	public ArrayList<AccountBean> findAll();
+
 	public AccountBean findByAccountNum(String accountNum);
+
 	public int countAccount();
-	public boolean existAccount(String accountNum);
-	public String findDate();	// 날짜반환
+
+	public boolean existAccountNum(String accountNum);
+
+	public String findDate(); // 날짜반환
 	// UPDATE
-	public void depositMoney(int money);
-	public void withdrawMoney(int money);
+
+	public void depositMoney(String accoutNum, int money);
+
+	public void withdrawMoney(String accoutNum, int money);
+
 	// DELETE
 	public void deleteAccountNum(String accountNum);
-	
+
 }
